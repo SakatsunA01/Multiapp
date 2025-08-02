@@ -1,4 +1,7 @@
 <script setup>
+import { defineProps } from 'vue'
+import { RouterLink } from 'vue-router'
+
 defineProps({
   event: {
     type: Object,
@@ -8,21 +11,30 @@ defineProps({
 </script>
 
 <template>
-  <div
-    class="bg-medium-charcoal rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row transform transition duration-300 hover:scale-105 hover:shadow-accent-brown/10">
-    <img :src="event.imageUrl" :alt="event.title" class="w-full md:w-1/3 h-48 md:h-auto object-cover"
-      @error="(e) => (e.target.src = 'https://placehold.co/300x200/948979/222831?text=Evento')" />
-    <div class="p-4 flex-1 flex flex-col">
+  <div class="md-card group flex flex-col overflow-hidden">
+    <div class="relative overflow-hidden">
+      <RouterLink :to="`/evento/${event.id}`">
+        <img class="object-cover w-full h-40 transition-transform duration-500 group-hover:scale-105"
+          :src="event.imageUrl" :alt="event.title"
+          @error="(e) => (e.target.src = 'https://placehold.co/300x200/e0e5ec/4a5568?text=Evento')" />
+      </RouterLink>
+    </div>
+
+    <div class="p-5 flex flex-col justify-between flex-grow">
       <div>
-        <h3 class="text-xl font-semibold mb-2 text-light-beige">{{ event.title }}</h3>
-        <p class="text-light-beige/80 text-sm mb-1"><span class="font-medium text-light-beige/90">Fecha:</span> {{
-          event.date }}</p>
-        <p class="text-light-beige/80 text-sm mb-4"><span class="font-medium text-light-beige/90">Lugar:</span> {{
-          event.location }}</p>
-        <p class="text-light-beige/80 text-base mb-4 hidden md:block">{{ event.description }}</p>
+        <RouterLink :to="`/evento/${event.id}`"
+          class="block text-lg font-bold text-md-on-surface hover:text-md-primary transition-colors duration-300">
+          {{ event.title }}
+        </RouterLink>
+        <p class="mt-2 text-sm font-semibold text-md-on-surface">{{ event.date }}</p>
+        <p class="text-sm text-md-on-surface">{{ event.location }}</p>
       </div>
-      <a :href="event.link"
-        class="text-accent-brown hover:text-light-beige font-medium transition duration-300 mt-auto">Ver Detalles</a>
+
+      <div class="mt-4 pt-4 border-t border-md-background">
+        <RouterLink :to="`/evento/${event.id}`" class="md-button text-center w-full py-2">
+          Ver Detalles
+        </RouterLink>
+      </div>
     </div>
   </div>
 </template>

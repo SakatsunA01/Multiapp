@@ -26,7 +26,7 @@ export default defineConfig({
     'i-carbon-share',
     'i-carbon-link',
     // Iconos Sociales (unificados a Carbon)
-    'i-carbon-logo-facebook',
+    'fab fa-facebook-square',
     'i-carbon-logo-instagram',
     'i-carbon-logo-x',
     'i-carbon-logo-tiktok',
